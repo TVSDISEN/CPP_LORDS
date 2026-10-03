@@ -16,11 +16,11 @@ void Simulator::run(double durationSeconds) {
         double t = i * dt;
         double measuredSpeed = motor.getSpeed();
 
-        double error = setpoint - measuredSpeed;
-
-        double u = controller.calculate(
+        double u = controller.computeOutput(
             setpoint, measuredSpeed, dt
         );
+
+        double error = controller.getLastError();
 
         SimulationResult r{
             t,

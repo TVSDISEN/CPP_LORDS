@@ -1,7 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude
 
-SRC = src/Controller.cpp src/Motor.cpp src/CSVOutput.cpp src/Simulator.cpp
+SRC = src/Controller.cpp src/Comparator.cpp src/GainP.cpp src/GainI.cpp src/GainD.cpp \
+      src/FeedbackGain.cpp src/Motor.cpp src/CSVOutput.cpp src/Simulator.cpp
 
 all: motorsim
 

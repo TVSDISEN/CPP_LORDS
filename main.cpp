@@ -17,6 +17,10 @@ const double LOAD_TORQUE  = 2.0;
 const double KP = 1.5;
 const double KI = 6.0;
 const double KD = 0.02;
+
+const double FEEDBACK_H     = 1.0;   // sensor gain (1 = true speed)
+const double INTEGRAL_LIMIT = 3.0;   // anti-windup clamp on the I sum
+const double MAX_VOLTAGE    = 24.0;  // supply voltage limit
 // ==============================
 
 void runScenario(const std::string& name,
@@ -32,7 +36,7 @@ void runScenario(const std::string& name,
 
     motor.setLoadDisturbance(LOAD_TIME);
 
-    Controller controller(kp, ki, kd);
+    Controller controller(kp, ki, kd, FEEDBACK_H, INTEGRAL_LIMIT, MAX_VOLTAGE);
 
     std::string path = "data/" + name + ".csv";
 

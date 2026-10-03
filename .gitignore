@@ -1,2 +1,23 @@
+# compiled files
 *.exe
+
+# generated results (data/.gitkeep keeps the folder in git)
 data/*.csv
+
+# compiled program and test binaries (leading / = only in the repo root)
+/motorsim
+/motorsim.exe
+/test_controller
+/test_controller.exe
+/test_motor
+/test_motor.exe
+/test_output
+/test_output.exe
+*.o
+
+# made by make test_output, not one of our results
+data/test_output.csv
+
+# editor / OS files
+.vscode/
+.DS_Store
