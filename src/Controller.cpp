@@ -1,6 +1,6 @@
 #include "Controller.h"
 #include <algorithm>
-
+using namespace std;
 Controller::Controller(double kp, double ki, double kd, double h,
                        double integralLimit, double maxOut)
     : Kp(kp), Ki(ki), Kd(kd), maxOutput(maxOut), lastError(0.0),
@@ -18,7 +18,7 @@ double Controller::computeOutput(double setpoint, double measuredSpeed, double d
     if (Kd != 0.0) output += gainD.compute(error, dt);
 
     // can't give the motor more than the supply voltage
-    return std::clamp(output, -maxOutput, maxOutput);
+    return clamp(output, -maxOutput, maxOutput);
 }
 
 double Controller::getLastError() const {
