@@ -2,17 +2,18 @@
 #include <iostream>
 #include <memory>
 
-int main() {
-    std::unique_ptr<Output> out =
+int main()
+{
+    std::unique_ptr<Output> output =
         std::make_unique<CSVOutput>("data/test_output.csv");
 
-    out->record({0.0, 100, 0,   100, 24, 0});
-    out->record({0.1, 100, 50,   50, 20, 0});
-    out->record({0.2, 100, 99,    1, 10, 2});
+    output->record({0.0, 100, 0, 100, 24, 0});
+    output->record({0.1, 100, 50, 50, 20, 0});
+    output->record({0.2, 100, 99, 1, 10, 2});
 
-    out->close();
+    output->close();
 
-    std::cout << "Wrote data/test_output.csv - open it, expect 1 header + 3 rows\n";
+    std::cout << "Output written to data/test_output.csv\n";
 
     return 0;
 }

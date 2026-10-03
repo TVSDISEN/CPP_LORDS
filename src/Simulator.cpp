@@ -7,22 +7,23 @@ Simulator::Simulator(Motor m, Controller c, std::unique_ptr<Output> out,
       controller(std::move(c)),
       output(std::move(out)),
       dt(dtIn),
-      setpoint(sp) {}
+      setpoint(sp)
+{
+}
 
-void Simulator::run(double durationSeconds) {
+void Simulator::run(double durationSeconds)
+{
     int steps = static_cast<int>(durationSeconds / dt + 0.5);
 
-    for (int i = 0; i <= steps; ++i) {
+    for (int i = 0; i <= steps; i++)
+    {
         double t = i * dt;
         double measuredSpeed = motor.getSpeed();
 
-        double u = controller.computeOutput(
-            setpoint, measuredSpeed, dt
-        );
-
+        double u = controller.computeOutput(setpoint, measuredSpeed, dt);
         double error = controller.getLastError();
 
-        SimulationResult r{
+        SimulationResult result{
             t,
             setpoint,
             measuredSpeed,
@@ -31,13 +32,14 @@ void Simulator::run(double durationSeconds) {
             motor.getLoadAt(t)
         };
 
-        output->record(r);
+        output->record(result);
         motor.update(u, t, dt);
     }
 
     output->close();
 }
 
-double Simulator::getFinalSpeed() const {
+double Simulator::getFinalSpeed() const
+{
     return motor.getSpeed();
 }
