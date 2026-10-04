@@ -212,7 +212,7 @@ At the start the controller asks for more than 24 V, so the output is capped at 
 - **Integral limit (anti-windup).** At startup the motor is already at full voltage, but the I part keeps adding up error anyway. Without a limit, this stored-up value causes a large overshoot later. In our tests, removing the limit raised the overshoot from 4% to 24%.
 - **No spike from D on the first step.** On the first step there is no earlier error to compare with. Without care, D would see the error jump from 0 to 100 in one millisecond and demand a huge voltage. So D returns 0 on its first step.
 
-How we chose the final gains is recorded in [`docs/tuning-notes.md`](docs/tuning-notes.md).
+
 
 ## 12. How to build and run
 
