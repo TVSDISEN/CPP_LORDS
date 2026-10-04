@@ -100,4 +100,4 @@ docs/        tuning notes and plots
 
 ## Not done yet
 
-Multithreading (stretch goal). `runThreaded()` is declared in `Simulator.h` but not written yet.
+Putting the output csv files data in a graph format (stretch goal).
