@@ -260,8 +260,8 @@ Makefile     build, run and test commands
 
 | Member | Built |
 |---|---|
-| **Vijay** | The controller (Comparator, GainP, GainI, GainD, FeedbackGain, Controller), controller tests, gain-tuning experiments, repository setup |
-| **Disen** | The motor and load model, the data row struct, the multithreaded simulator, motor tests, diagrams and plots |
+| **Vijay** | The controller parts(Comparator, GainP, GainI, GainD, FeedbackGain), gain-tuning experiments, repository setup |
+| **Disen** | The motor and load model, |motor tests, |the controller |controller_tests
 | **Manas** | The Simulator, the output system (Output, CSVOutput), `main.cpp`, the Makefile, output test, integration |
 
 We wrote the header files first and treated them as a contract between us. That let all three of us code in parallel without stepping on each other's work.
