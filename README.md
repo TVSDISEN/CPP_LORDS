@@ -269,3 +269,14 @@ Makefile     build and test commands
 | **Integral windup** | The I part keeps growing during saturation and causes overshoot |
 | **Load disturbance** | An outside force that suddenly resists the motor |
 | **CSV** | A simple spreadsheet file where values are separated by commas |
+
+
+## Team
+
+| Member | Contribution |
+|---|---|
+| **Vijay** | Controller building blocks (Comparator, GainP, GainI, GainD, FeedbackGain) and repository setup |
+| **Disen** | Motor and load model, Controller, and the motor and controller tests |
+| **Manas** | Simulator, output system (Output, CSVOutput), `main.cpp`, Makefile, output test, and integration |
+
+We wrote the header files first and treated them as a contract between us. This let all three of us work in parallel without conflicts.
