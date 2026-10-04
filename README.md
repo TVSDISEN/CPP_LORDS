@@ -248,7 +248,6 @@ include/     header files (.h): what each class offers
 src/         source files (.cpp): how each class works
 tests/       test programs for the controller, motor and output
 data/        CSV results (created when the program runs)
-docs/        tuning notes
 images/      diagrams and graphs used in this README
 main.cpp     program entry point and all settings
 Makefile     build and test commands
