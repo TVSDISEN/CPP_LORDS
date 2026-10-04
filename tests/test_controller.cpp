@@ -1,16 +1,14 @@
 // Unit tests for the controller blocks.
 // Run with: make test_controller
 #include "Controller.h"
-#include <cmath>
-#include <iostream>
-
+#include <bits/stdc++.h>
+using namespace std;
 int fails = 0;
 
 void check(const char* name, double got, double expected) {
-    bool ok = std::fabs(got - expected) < 1e-9;
+    bool ok =fabs(got - expected) < 1e-9;
     if (!ok) fails++;
-    std::cout << (ok ? "PASS  " : "FAIL  ") << name
-              << "   got=" << got << " expected=" << expected << "\n";
+    cout << (ok ? "PASS  " : "FAIL  ") << name<< "   got=" << got << " expected=" << expected << "\n";
 }
 
 int main() {
@@ -20,7 +18,6 @@ int main() {
     GainP p(2.0);
     check("GainP 2 * 5", p.compute(5), 10);
 
-    // Ki = 1, limit = 3. Error 10 for 0.1 s adds 1 to the sum each call.
     GainI i(1.0, 3.0);
     check("GainI first step", i.compute(10, 0.1), 1.0);
     for (int k = 0; k < 10; k++) i.compute(10, 0.1);
@@ -39,8 +36,6 @@ int main() {
     FeedbackGain h(1.0);
     check("FeedbackGain 1 * 50", h.apply(50), 50);
 
-    // whole controller with our final gains. Error 100 at the start
-    // asks for ~150 V, so it must clamp to the 24 V supply.
     Controller ctrl(1.5, 6.0, 0.02, 1.0, 3.0, 24.0);
     check("Controller clamps at +24 V", ctrl.computeOutput(100, 0, 0.001), 24.0);
     check("Controller lastError", ctrl.getLastError(), 100.0);
@@ -48,14 +43,14 @@ int main() {
     Controller ctrl2(1.5, 6.0, 0.02, 1.0, 3.0, 24.0);
     check("Controller clamps at -24 V", ctrl2.computeOutput(0, 100, 0.001), -24.0);
 
-    // Ki = Kd = 0 -> plain P controller. Error 10 -> 1.5 * 10 = 15 V
     Controller pOnly(1.5, 0.0, 0.0, 1.0, 3.0, 24.0);
     check("P-only controller 1.5 * 10", pOnly.computeOutput(100, 90, 0.001), 15.0);
 
-    if (fails == 0)
-        std::cout << "\nALL CONTROLLER TESTS PASSED\n";
-    else
-        std::cout << "\n" << fails << " TEST(S) FAILED\n";
-
+    if (fails == 0){
+        cout << "\nALL CONTROLLER TESTS PASSED\n";
+    }
+    else{
+        cout << "\n" << fails << " TEST(S) FAILED\n";
+    }
     return fails == 0 ? 0 : 1;
 }
